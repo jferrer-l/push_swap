@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jferrer- <jferrer-@student.42barc...>      +#+  +:+       +#+        */
+/*   By: jferrer- <jferrer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:05:10 by jferrer-          #+#    #+#             */
-/*   Updated: 2022/03/16 23:17:38 by jferrer-         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:10:04 by jferrer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pushswap.h"
 
 void	sa(t_data *data)
@@ -48,6 +49,8 @@ void	ss(t_data *data)
 
 int	sort_size_3(t_data *d)
 {
+	if (d->sia == 2 && d->a[0] > d->a[1])
+		sa(d);
 	if (d->sia == 3)
 	{
 		if (d->a[1] > d->a[2] && d->a[1] > d->a[0])
@@ -64,26 +67,27 @@ int	sort_size_3(t_data *d)
 	return (d->sia);
 }
 
-int	sort_size_5(t_data *d)
+int	sort_size_5(t_data *d, int var)
 {
 	int	i;
 	int	done;
 
 	i = 0;
 	done = 0;
-	while (d->sib < 2)
+	while (d->sia > 3)
 	{
-		if (d->ia[0] == 0)
+		if (var == 2 && d->ia[0] == (d->sia + d->sib - 5))
 			pb(d);
-		else if (d->ia[0] == 1)
+		else if (d->ia[0] == (d->sia + d->sib - 4))
 			pb(d);
 		else
 			ra(d);
 	}
 	sort_size_3(d);
-	if (d->ib[0] < d->ib[1])
+	if (var == 2 && d->ib[0] < d->ib[1])
 		sb(d);
-	pa(d);
+	if (var == 2)
+		pa(d);
 	pa(d);
 	return (d->sia);
 }

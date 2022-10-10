@@ -3,18 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   calculate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jferrer- <jferrer-@student.42barc...>      +#+  +:+       +#+        */
+/*   By: jferrer- <jferrer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 20:14:12 by jferrer-          #+#    #+#             */
-/*   Updated: 2022/04/06 04:39:14 by jferrer-         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:13:08 by jferrer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pushswap.h"
 
 int		sort_size_3(t_data *d);
 void	sort1(t_data *d, int part);
 int		rotate(t_data *d, int i, int temp);
-int		sort_size_5(t_data *d);
+int		sort_size_5(t_data *d, int var);
+
+int	is_sorted(t_data *d)
+{
+	int	i;
+
+	i = 0;
+	while (++i < d->sia)
+		if (d->ia[i - 1] > d->ia[i])
+			return (1);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -28,11 +40,13 @@ int	main(int argc, char **argv)
 	check_duplicates(data);
 	if (argc <= 4)
 		sort_size_3(data);
-	else if (argc == 6)
-		sort_size_5(data);
-	else if (argc < 150)
+	else if (argc == 5 && is_sorted(data))
+		sort_size_5(data, 1);
+	else if (argc == 6 && is_sorted(data))
+		sort_size_5(data, 2);
+	else if (argc < 150 && is_sorted(data))
 		sort1(data, 5);
-	else
+	else if (is_sorted(data))
 		sort1(data, 7);
 	freedata(data);
 	return (0);
@@ -80,7 +94,7 @@ void	sort1(t_data *d, int part)
 			count++;
 		}
 	}
-	sort_size_3(d);
+	fix_lap1(d);
 	sort2(d);
 }
 

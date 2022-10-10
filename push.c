@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jferrer- <jferrer-@student.42barc...>      +#+  +:+       +#+        */
+/*   By: jferrer- <jferrer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:09:05 by jferrer-          #+#    #+#             */
-/*   Updated: 2022/03/16 22:54:07 by jferrer-         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:12:37 by jferrer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "pushswap.h"
 
 void	init_data_2(int size, t_data *d);
@@ -117,4 +118,21 @@ void	init_data_2(int size, t_data *d)
 		}
 		d->ia[lowpos] = cont;
 	}
+}
+
+void	fix_lap1(t_data *d)
+{
+	if (!is_sorted(d))
+		return ;
+	if (d->sia == 2 && d->ia[0] > d->ia[1])
+		sa(d);
+	else if (d->sia == 3)
+		sort_size_3(d);
+	else if (d->sia == 4)
+		sort_size_5(d, 1);
+	else if (d->sia == 5)
+		sort_size_5(d, 2);
+	else
+		while (d->sia > 0)
+			pb(d);
 }

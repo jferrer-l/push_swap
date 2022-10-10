@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jferrer- <jferrer-@student.42barc...>      +#+  +:+       +#+        */
+/*   By: jferrer- <jferrer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 17:06:22 by jferrer-          #+#    #+#             */
-/*   Updated: 2022/03/16 23:18:53 by jferrer-         ###   ########.fr       */
+/*   Updated: 2022/10/10 02:13:23 by jferrer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef PUSHSWAP_H
 # define PUSHSWAP_H
 
@@ -47,8 +48,10 @@ int		check_duplicates(t_data *data);
 int		ft_atoi(const char *str, t_data *data);
 
 int		init_data(int argc, char **argv, t_data *data);
+void	fix_lap1(t_data *d);
+int		is_sorted(t_data *d);
 
-int		sort_size_5(t_data *d);
+int		sort_size_5(t_data *d, int var);
 int		sort_size_3(t_data *d);
 
 void	bsa(t_data *data);
